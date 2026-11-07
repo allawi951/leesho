@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>علي وليشو — كل الروابط والبرومتات</title>
+<meta name="description" content="كل أداة ورابط وبرومت نذكره في حلقات علي وليشو، في مكان واحد.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1d1f24;--card:#272a31;--line:#353943;--cream:#f6ead7;--muted:#a9a49b;--or:#ff7a1a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--cream);font-family:Cairo,system-ui,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:28px 18px 60px}
+header{text-align:center;padding:10px 0 18px}
+header img.logo{width:120px;height:120px;object-fit:contain}
+header img.wm{display:block;margin:6px auto 0;max-width:220px;height:auto}
+h1{font-size:1.25rem;font-weight:900;margin:14px 0 4px}
+h1 span{color:var(--or)}
+.sub{color:var(--muted);margin:0}
+.social{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 6px}
+.social a{color:var(--cream);text-decoration:none;border:1px solid var(--line);background:var(--card);padding:8px 16px;border-radius:999px;font-weight:700}
+.social a:hover{border-color:var(--or)}
+.tip{background:var(--card);border:1px dashed var(--or);border-radius:14px;padding:12px 16px;margin:18px 0;text-align:center}
+.tip b{color:var(--or)}
+.ep{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:16px 0;scroll-margin-top:16px}
+.ep:target{border-color:var(--or);box-shadow:0 0 0 2px rgba(255,122,26,.25)}
+.ep h2{margin:0;font-size:1.1rem}
+.ep .meta{color:var(--muted);font-size:.85rem;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ep .meta a{color:var(--or)}
+.item{border-top:1px solid var(--line);padding:12px 0 2px}
+.item .t{font-weight:700}
+.item a.go{color:var(--or);word-break:break-all}
+.item .note{color:var(--muted);font-size:.9rem}
+pre{white-space:pre-wrap;direction:ltr;text-align:left;background:#15171b;border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0;font-size:.9rem}
+button{font-family:inherit;background:var(--or);color:#1d1f24;border:0;border-radius:999px;padding:4px 14px;font-weight:900;cursor:pointer}
+.empty{color:var(--muted);text-align:center;padding:30px 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img class="logo" src="assets/logo.png" alt="شعار علي وليشو">
+    <img class="wm" src="assets/wordmark.png" alt="علي وليشو">
+    <h1>كل <span>الروابط والبرومتات</span> اللي نذكرها في الحلقات</h1>
+    <p class="sub">دوّر على حلقتك، وانسخ اللي تبيه بضغطة.</p>
+    <nav class="social">
+      <a href="https://www.youtube.com/@ali.wa.leesho" target="_blank" rel="noopener">يوتيوب</a>
+      <a href="https://www.tiktok.com/@ali.wa.leesho" target="_blank" rel="noopener">تيك توك</a>
+      <a href="https://www.instagram.com/ali.wa.leesho" target="_blank" rel="noopener">إنستقرام</a>
+    </nav>
+  </header>
+  <div class="tip">تبي الرابط على طول؟ أرسل كلمة <b>«ليشو»</b> في إنستقرام أو تيك توك ونرسل لك الرابط المباشر.</div>
+  <main id="list"></main>
+  <footer><bdi dir="ltr">@ali.wa.leesho</bdi> — اشترك وفعّل الجرس عشان توصلك الحلقة الجاية 🔔</footer>
+</div>
+<script src="episodes.js"></script>
+<script>
+const list=document.getElementById('list');
+const eps=window.EPISODES||[];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+if(!eps.length){list.innerHTML='<p class="empty">أول الروابط توصل مع الحلقة الجاية… خلك قريب 👀</p>';}
+eps.forEach(ep=>{
+  const s=document.createElement('section');s.className='ep';s.id=ep.id;
+  let h=`<h2>${esc(ep.title)}</h2><div class="meta">${ep.date?`<span>${esc(ep.date)}</span>`:''}${ep.watch?`<a href="${esc(ep.watch)}" target="_blank" rel="noopener">شاهد الحلقة</a>`:''}<button data-link="${esc(ep.id)}">انسخ رابط القسم</button></div>`;
+  (ep.items||[]).forEach((it,i)=>{
+    h+=`<div class="item"><div class="t">${esc(it.title)}</div>`;
+    if(it.type==='prompt'){h+=`<pre id="p-${esc(ep.id)}-${i}">${esc(it.text)}</pre><button data-copy="p-${esc(ep.id)}-${i}">انسخ البرومت</button>`;}
+    else{h+=`<a class="go" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.url)}</a>`;}
+    if(it.note)h+=`<div class="note">${esc(it.note)}</div>`;
+    h+='</div>';
+  });
+  s.innerHTML=h;list.appendChild(s);
+});
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  const txt=b.dataset.copy?document.getElementById(b.dataset.copy).textContent:location.origin+location.pathname+'#'+b.dataset.link;
+  navigator.clipboard.writeText(txt).then(()=>{const o=b.textContent;b.textContent='تم النسخ ✓';setTimeout(()=>b.textContent=o,1400);});
+});
+</script>
+</body>
+</html>

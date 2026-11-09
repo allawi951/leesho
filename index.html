@@ -35,6 +35,11 @@ h1 span{color:var(--or)}
 .item .note{color:var(--muted);font-size:.9rem}
 pre{white-space:pre-wrap;direction:ltr;text-align:left;background:#15171b;border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0;font-size:.9rem}
 button{font-family:inherit;background:var(--or);color:#1d1f24;border:0;border-radius:999px;padding:4px 14px;font-weight:900;cursor:pointer}
+.search{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 6px}
+.search input{width:100%;font-family:inherit;font-size:1rem;color:var(--cream);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:11px 18px;outline:none}
+.search input:focus{border-color:var(--or)}
+.search .count{color:var(--muted);font-size:.85rem;text-align:center;margin-top:4px;min-height:1.3em}
+.ep.hide{display:none}
 .empty{color:var(--muted);text-align:center;padding:30px 0}
 footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:30px}
 </style>
@@ -52,7 +57,8 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:30px}
       <a href="https://www.instagram.com/ali.wa.leesho" target="_blank" rel="noopener">إنستقرام</a>
     </nav>
   </header>
-  <div class="tip">تبي الرابط على طول؟ أرسل كلمة <b>«ليشو»</b> في إنستقرام أو تيك توك ونرسل لك الرابط المباشر.</div>
+  <div class="tip">تبي الرابط على طول؟ أرسل كلمة <b>«ليشو»</b> في إنستقرام (خاص أو تعليق) ونرسل لك الرابط في الخاص.</div>
+  <div class="search"><input id="q" type="search" placeholder="🔍 ابحث باسم المقطع (مثل: خط عربي)" autocomplete="off" aria-label="ابحث عن مقطع"><div class="count" id="count"></div></div>
   <main id="list"></main>
   <footer><bdi dir="ltr">@ali.wa.leesho</bdi> — اشترك وفعّل الجرس عشان توصلك الحلقة الجاية 🔔</footer>
 </div>
@@ -74,6 +80,31 @@ eps.forEach(ep=>{
   });
   s.innerHTML=h;list.appendChild(s);
 });
+// البحث: يطابق العنوان والكلمات والروابط والبرومتات، ويتسامح مع الهمزات والتاء المربوطة والتشكيل وگ/ق
+const norm=t=>String(t||'').toLowerCase().replace(/[ً-ْٰـ]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/ؤ/g,'و').replace(/ئ/g,'ي').replace(/گ/g,'ق').replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+const hay=eps.map(ep=>norm([ep.title,ep.id,(ep.keywords||[]).join(' '),...(ep.items||[]).map(it=>[it.title,it.note,it.text,it.url].join(' '))].join(' ')));
+const titleHay=eps.map(ep=>norm(ep.title+' '+(ep.keywords||[]).join(' ')));
+const qIn=document.getElementById('q'),cnt=document.getElementById('count');
+function runSearch(){
+  const words=norm(qIn.value).split(' ').filter(Boolean);
+  let shown=[];
+  eps.forEach((ep,i)=>{
+    const sec=document.getElementById(ep.id);
+    const ok=!words.length||words.every(w=>hay[i].includes(w));
+    sec.classList.toggle('hide',!ok);
+    const h2=sec.querySelector('h2');h2.innerHTML=esc(ep.title);
+    if(ok){shown.push({sec,score:words.filter(w=>titleHay[i].includes(w)).length});}
+  });
+  // الأقرب للعنوان أولًا
+  shown.sort((a,b)=>b.score-a.score).forEach(o=>list.appendChild(o.sec));
+  if(!words.length){eps.forEach(ep=>list.appendChild(document.getElementById(ep.id)));cnt.textContent='';return shown;}
+  cnt.textContent=shown.length?(shown.length===1?'لقينا المقطع 👇':`لقينا ${shown.length} مقاطع 👇`):'ما لقينا شي… جرّب كلمة ثانية من العنوان';
+  return shown;
+}
+qIn.addEventListener('input',runSearch);
+qIn.addEventListener('keydown',e=>{if(e.key==='Enter'){const r=runSearch();if(r[0])r[0].sec.scrollIntoView({behavior:'smooth'});qIn.blur();}});
+const q0=new URLSearchParams(location.search).get('q');if(q0){qIn.value=q0;runSearch();}
+
 document.addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;
   const txt=b.dataset.copy?document.getElementById(b.dataset.copy).textContent:location.origin+location.pathname+'#'+b.dataset.link;

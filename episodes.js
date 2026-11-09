@@ -1,12 +1,14 @@
 // كل حلقة تذكر أداة أو برومت أو رابط تضيف قسمها هنا قبل النشر (الأحدث أولًا).
 // id = يُستخدم في الرابط المباشر: https://allawi951.github.io/leesho/#<id>
+// keywords: كلمات إضافية للبحث (اختياري) — اسم المقطع بأكثر من صيغة
 // items: { type: "link" | "prompt", title, url?, text?, note? }
 window.EPISODES = [
   {
     id: "t08-arabic-fonts",
     title: "كيف تسوي خط عربي حلو؟ (٣ خطوات ببلاش)",
     date: "2026-11-08",
-    watch: "https://www.youtube.com/@ali.wa.leesho",
+    watch: "https://youtu.be/MN2QCz4hG5M",
+    keywords: ["خط عربي", "خطوط عربية", "خطوط", "خط ثلث", "رقعة", "كوفي", "قوقل فونتس", "google fonts", "fonts", "عيد ميلاد ليشو", "اسمك بخط"],
     items: [
       { type: "link", title: "قوقل فونتس — الخطوط العربية", url: "https://fonts.google.com/?lang=ar_Arab", note: "أكثر من ٥٠ خط عربي مجاني، حتى للاستخدام التجاري. اكتب جملتك فوق وشوفها بكل الخطوط" },
       { type: "link", title: "كايرو (Cairo) — للعناوين القوية", url: "https://fonts.google.com/specimen/Cairo" },

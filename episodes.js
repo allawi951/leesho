@@ -7,7 +7,7 @@ window.EPISODES = [
     id: "t11-free-ai-video",
     title: "كيف تسوي فيديو بالذكاء الاصطناعي ببلاش؟ (٥ خطوات)",
     date: "2026-11-09",
-    watch: "",
+    watch: "https://youtu.be/e35-fIGYiJM",
     keywords: ["فيديو ذكاء اصطناعي", "مسلسل فواكه", "فواكه", "طماطة", "فلو", "google flow", "ميتا", "meta ai", "كاب كات", "capcut", "جيميناي", "ببلاش", "مجانا"],
     items: [
       { type: "link", title: "جيميناي — للقصة", url: "https://gemini.google.com", note: "مجاني للكتابة" },

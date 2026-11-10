@@ -7,6 +7,7 @@ window.EPISODES = [
     id: "shula",
     title: "شرح: كيف تسوي فيلم مثل «شعلة» بالكود؟ (٦ خطوات)",
     date: "2026-11-10",
+    watch: "https://youtu.be/0fYDI2V2RaE",
     keywords: ["شعلة", "شرح", "فيلم قصير", "بدون كلام", "ثلاثي الأبعاد", "3d", "كلود كود", "claude code", "remotion", "three.js", "طريقة عمل الفيديو"],
     items: [
       { type: "link", title: "كلود كود — هو اللي يكتب الفيلم كله", url: "https://claude.com/claude-code", note: "ما تحتاج تعرف برمجة: أنت تكتب الطلب بالعربي وهو يكتب الكود ويشغّله على جهازك" },

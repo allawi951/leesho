@@ -7,7 +7,7 @@ window.EPISODES = [
     id: "t21-adblock-dns",
     title: "قفّل إعلانات الألعاب من إعدادات جوالك (بدون برنامج)",
     date: "2026-11-19",
-    watch: "",
+    watch: "https://youtu.be/uaQyPNr0wg0",
     keywords: ["إعلانات", "اعلانات", "حجب الإعلانات", "ad block", "adguard", "أد گارد", "dns", "private dns", "DNS الخاص", "ألعاب", "أطفال", "آيفون", "أندرويد", "سامسونج"],
     items: [
       { type: "prompt", title: "١) العنوان العادي (أندرويد ← DNS الخاص ← اسم المضيف)", text: "dns.adguard-dns.com", note: "اكتبه بالحرف بدون مسافات ولا https، واضغط حفظ" },

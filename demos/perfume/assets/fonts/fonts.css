@@ -1,0 +1,8 @@
+/* خطوط محلية بالكامل — لا طلبات شبكة وقت التشغيل.
+   Cormorant Garamond وJost ملفّان متغيّرا الوزن، فملف واحد يغطّي كل الأوزان. */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 700;font-display:swap;src:url('./cormorant-garamond.woff2') format('woff2');}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300 500;font-display:swap;src:url('./jost.woff2') format('woff2');}
+@font-face{font-family:'Amiri';font-style:normal;font-weight:400;font-display:swap;src:url('./amiri-400.woff2') format('woff2');}
+@font-face{font-family:'Tajawal';font-style:normal;font-weight:300;font-display:swap;src:url('./tajawal-300.woff2') format('woff2');}
+@font-face{font-family:'Tajawal';font-style:normal;font-weight:400;font-display:swap;src:url('./tajawal-400.woff2') format('woff2');}
+@font-face{font-family:'Tajawal';font-style:normal;font-weight:700;font-display:swap;src:url('./tajawal-700.woff2') format('woff2');}

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>نظام حجز مواعيد أونلاين — نموذج تطبيق من علي وليشو</title>
+<meta name="description" content="نموذج نظام حجز مواعيد لمركز عناية بالسيارات: يختار العميل الخدمة واليوم والوقت المتاح، ويوصل الحجز للمحل، مع لوحة لصاحب المحل تعرض حجوزات اليوم. نفصّله لعيادتك أو صالونك أو ورشتك.">
+<meta name="theme-color" content="#0b1730">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231a6dff'/%3E%3Crect x='14' y='18' width='36' height='32' rx='6' fill='none' stroke='white' stroke-width='5'/%3E%3Cpath d='M14 28h36M24 12v10M40 12v10' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40"><path d="M7 25.5 10 17a4 4 0 0 1 3.8-2.7h12.4A4 4 0 0 1 30 17l3 8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><rect x="5" y="24" width="30" height="8" rx="3" fill="currentColor"/><circle cx="12" cy="33" r="2.6" fill="#0b1730"/><circle cx="28" cy="33" r="2.6" fill="#0b1730"/><path d="M29 6l1.2 2.8L33 10l-2.8 1.2L29 14l-1.2-2.8L25 10l2.8-1.2Z" fill="#7fe3ff"/></svg>
+      </span>
+      <div>
+        <h1>مركز لمعة</h1>
+        <p>للعناية بالسيارات · حي الياسمين</p>
+      </div>
+    </div>
+    <div class="view-switch" role="tablist" aria-label="طريقة العرض">
+      <button type="button" role="tab" id="tabC" aria-selected="true" aria-controls="viewC">واجهة العميل</button>
+      <button type="button" role="tab" id="tabO" aria-selected="false" aria-controls="viewO">لوحة المحل <span class="badge" id="newBadge" hidden>0</span></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <aside class="sample" role="note">
+    <b>نموذج تجريبي لمحل وهمي.</b> احجز موعد وشوف كيف توصل الرسالة للمحل وكيف يظهر الحجز في لوحته — ما ينرسل شي فعليًا.
+  </aside>
+
+  <!-- واجهة العميل -->
+  <section id="viewC" role="tabpanel" aria-labelledby="tabC">
+    <ol class="steps" aria-label="خطوات الحجز">
+      <li data-s="1" class="on"><span>1</span>الخدمة</li>
+      <li data-s="2"><span>2</span>الموعد</li>
+      <li data-s="3"><span>3</span>بياناتك</li>
+    </ol>
+
+    <div class="step" id="s1">
+      <h2 class="h">وش تحتاج سيارتك اليوم؟</h2>
+      <div class="services" id="services" role="radiogroup" aria-label="الخدمات"></div>
+    </div>
+
+    <div class="step" id="s2" hidden>
+      <h2 class="h">اختر اليوم والوقت</h2>
+      <div class="strip-wrap"><div class="strip" id="strip" role="radiogroup" aria-label="الأيام"></div></div>
+      <div id="slots" class="slots"></div>
+    </div>
+
+    <div class="step" id="s3" hidden>
+      <h2 class="h">آخر خطوة: بياناتك</h2>
+      <div class="card summary" id="summary"></div>
+      <form id="form" class="card form" novalidate>
+        <label class="fld">
+          <span>الاسم</span>
+          <input id="fName" type="text" maxlength="30" autocomplete="name" placeholder="مثال: أبو سلطان" required aria-describedby="fNameErr">
+          <small class="err" id="fNameErr"></small>
+        </label>
+        <label class="fld">
+          <span>رقم الجوال</span>
+          <input id="fPhone" type="tel" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="05xxxxxxxx" dir="ltr" required aria-describedby="fPhoneErr fPhoneHint">
+          <small class="hint" id="fPhoneHint">نموذج تجريبي — اكتب أي رقم بصيغة 05xxxxxxxx، ما راح نتواصل معه.</small>
+          <small class="err" id="fPhoneErr"></small>
+        </label>
+        <label class="fld">
+          <span>نوع السيارة <em>(اختياري)</em></span>
+          <input id="fCar" type="text" maxlength="30" autocomplete="off" placeholder="مثال: كامري 2022 أبيض">
+        </label>
+        <label class="fld">
+          <span>ملاحظات <em>(اختياري)</em></span>
+          <input id="fNote" type="text" maxlength="80" autocomplete="off" placeholder="مثال: فيه بقع قهوة على المرتبة">
+        </label>
+      </form>
+    </div>
+
+    <div class="actionbar" id="actionbar">
+      <button type="button" class="btn btn-ghost" id="backBtn" hidden>رجوع</button>
+      <div class="ab-info" id="abInfo"></div>
+      <button type="button" class="btn btn-main" id="nextBtn" disabled>التالي</button>
+    </div>
+  </section>
+
+  <!-- لوحة المحل -->
+  <section id="viewO" role="tabpanel" aria-labelledby="tabO" hidden>
+    <div class="owner-h">
+      <div>
+        <h2 class="h" id="oTitle">حجوزات اليوم</h2>
+        <p class="muted" id="oSub"></p>
+      </div>
+    </div>
+    <div class="strip-wrap"><div class="strip" id="oStrip" role="radiogroup" aria-label="أيام لوحة المحل"></div></div>
+    <div class="kpis" id="oKpis"></div>
+    <div class="occ card" id="occ" aria-hidden="true"></div>
+    <ul class="agenda" id="agenda"></ul>
+  </section>
+
+  <footer class="foot">
+    <p>البيانات وهمية ومحفوظة في جهازك فقط.</p>
+    <button type="button" class="link" id="resetBtn">إعادة ضبط النموذج</button>
+  </footer>
+</main>
+
+<!-- التأكيد + معاينة الرسالة -->
+<div class="ov" id="doneOv" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="doneTitle">
+    <div class="done-h">
+      <svg class="check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
+      <h2 id="doneTitle">تم تأكيد حجزك!</h2>
+      <p class="muted" id="doneSub"></p>
+    </div>
+    <h3 class="wa-cap">هكذا توصل رسالة الحجز لواتساب المحل:</h3>
+    <div class="phone">
+      <div class="wa-top"><span class="wa-av" aria-hidden="true">🚗</span><div><b>مركز لمعة — الحجوزات</b><small>جوال الاستقبال</small></div></div>
+      <div class="wa-chat"><div class="bubble" id="waMsg"></div></div>
+    </div>
+    <p class="muted center">نموذج فقط — ما انرسل شي لأحد.</p>
+    <div class="sheet-foot">
+      <button type="button" class="btn btn-ghost" id="againBtn">حجز ثاني</button>
+      <button type="button" class="btn btn-main" id="seeOwner">شوفه في اللوحة</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="app.js"></script>
+<script src="../../assets/demo-bar.js" data-service="برنامج أو تطبيق" data-back="../" data-demo="نظام حجز مواعيد" data-what="تطبيق مثله لشغلك" defer></script>
+</body>
+</html>

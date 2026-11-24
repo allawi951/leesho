@@ -1,0 +1,5 @@
+# ملاحظة: محركات البحث تقرأ robots.txt من جذر الدومين فقط (allawi951.github.io/robots.txt).
+# هذا الملف يصير فعّالًا لو ربطنا دومين خاص بالموقع.
+User-agent: *
+Allow: /
+Sitemap: https://allawi951.github.io/leesho/sitemap.xml

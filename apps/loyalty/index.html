@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بطاقة ولاء رقمية بالأختام — نموذج تطبيق من علي وليشو</title>
+<meta name="description" content="نموذج بطاقة ولاء رقمية لمقهى: اشترِ ٦ والسابع علينا، أختام متحركة، سجل زيارات، ووضع كاشير بسيط برمز سري. نسوي لك واحدة بهوية محلك.">
+<meta name="theme-color" content="#0d3b36">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230d3b36'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23e9c27a' stroke-width='5'/%3E%3Cpath d='M25 33l5 5 10-11' fill='none' stroke='%23e9c27a' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M10 15h17v8a8.5 8.5 0 0 1-17 0Z" fill="currentColor"/><path d="M27 17h2.5a3.5 3.5 0 0 1 0 7H27" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15 7c-1.4 1.8 1.4 2.8 0 4.6M20 6c-1.4 1.8 1.4 2.8 0 4.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 33h24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+      <div><h1>قهوة مِرسال</h1><p>بطاقة الولاء</p></div>
+    </div>
+    <div class="switch" role="tablist" aria-label="طريقة العرض">
+      <button type="button" role="tab" id="tabMe" aria-selected="true" aria-controls="viewMe">بطاقتي</button>
+      <button type="button" role="tab" id="tabCash" aria-selected="false" aria-controls="viewCash">وضع الكاشير</button>
+    </div>
+  </header>
+
+  <aside class="sample" role="note"><b>نموذج تجريبي لمقهى وهمي.</b> جرّب تضيف أختام من «وضع الكاشير» وشوف البطاقة تتعبّى.</aside>
+
+  <!-- البطاقة (مشتركة بين الوضعين) -->
+  <section class="card-wrap" aria-label="بطاقة الولاء">
+    <article class="lcard" id="lcard">
+      <div class="lc-shine" aria-hidden="true"></div>
+      <header class="lc-h">
+        <div>
+          <span class="lc-brand">مِرسال</span>
+          <span class="lc-tag">اشرب ٦، والسابع علينا</span>
+        </div>
+        <span class="lc-tier" id="tier">عضو</span>
+      </header>
+      <ol class="stamps" id="stamps" aria-label="الأختام"></ol>
+      <footer class="lc-f">
+        <div><small>صاحب البطاقة</small><b id="holder">ضيف مِرسال</b></div>
+        <div class="lc-no"><small>رقم البطاقة</small><b dir="ltr">MRS 4821 0937</b></div>
+      </footer>
+    </article>
+    <p class="progress" id="progress" aria-live="polite"></p>
+  </section>
+
+  <!-- عرض العميل -->
+  <section id="viewMe" role="tabpanel" aria-labelledby="tabMe">
+    <div class="reward" id="reward" hidden>
+      <span class="rw-ico" aria-hidden="true">🎁</span>
+      <div><b>مبروك! مشروبك الجاي علينا</b><p>ورّ الكاشير بطاقتك وقت الطلب، ويصرفه لك.</p></div>
+    </div>
+
+    <div class="row2">
+      <div class="panel qr">
+        <svg id="qr" viewBox="0 0 29 29" role="img" aria-label="رمز البطاقة التجريبي"></svg>
+        <p>يمسحه الكاشير<br><small>رمز توضيحي</small></p>
+      </div>
+      <div class="panel stats" id="stats"></div>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn btn-soft" id="shareBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="m8.3 10.8 7.4-4.4M8.3 13.2l7.4 4.4"/></svg>
+        شارك بطاقتك
+      </button>
+      <button type="button" class="btn btn-soft" id="nameBtn">✏️ غيّر الاسم</button>
+    </div>
+
+    <section class="panel hist" aria-labelledby="histT">
+      <h2 id="histT">سجل الزيارات</h2>
+      <ul id="hist"></ul>
+    </section>
+  </section>
+
+  <!-- وضع الكاشير -->
+  <section id="viewCash" role="tabpanel" aria-labelledby="tabCash" hidden>
+    <div class="panel lock" id="lock">
+      <h2>دخول الكاشير</h2>
+      <p class="muted">في النظام الحقيقي لكل موظف رمزه. للتجربة استخدم:</p>
+      <p class="demo-pin">الرمز التجريبي: <b dir="ltr">2580</b></p>
+      <div class="pin-dots" id="pinDots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <p class="sr" id="pinLive" aria-live="assertive"></p>
+      <div class="pad" id="pad" role="group" aria-label="لوحة الأرقام"></div>
+    </div>
+
+    <div class="panel cashier" id="cashier" hidden>
+      <div class="cs-h">
+        <div><h2>الكاشير: مها</h2><p class="muted">العميل: <span id="csName"></span> · بطاقة رقم <bdi dir="ltr">MRS 4821 0937</bdi></p></div>
+        <button type="button" class="btn-link" id="lockBtn">🔒 قفل</button>
+      </div>
+      <p class="cs-lbl" id="drinkLbl">وش طلب العميل؟</p>
+      <div class="drinks" id="drinks" role="radiogroup" aria-labelledby="drinkLbl"></div>
+      <button type="button" class="btn btn-main big" id="stampBtn">☕ أضف ختم</button>
+      <button type="button" class="btn btn-gold big" id="redeemBtn" hidden>🎁 اصرف المشروب المجاني</button>
+      <p class="muted center" id="csHint"></p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>البيانات وهمية ومحفوظة في جهازك فقط.</p>
+    <button type="button" class="btn-link" id="resetBtn">إعادة ضبط النموذج</button>
+  </footer>
+</div>
+
+<div class="ov" id="nameOv" hidden>
+  <form class="sheet" id="nameForm" role="dialog" aria-modal="true" aria-labelledby="nameT" novalidate>
+    <h2 id="nameT">الاسم على البطاقة</h2>
+    <label class="fld"><span>اسمك</span><input id="nameIn" maxlength="20" autocomplete="off" placeholder="مثال: نورة"></label>
+    <div class="sheet-foot"><button type="button" class="btn btn-soft" data-close>إلغاء</button><button type="submit" class="btn btn-main">حفظ</button></div>
+  </form>
+</div>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="app.js"></script>
+<script src="../../assets/demo-bar.js" data-service="برنامج أو تطبيق" data-back="../" data-demo="بطاقة ولاء رقمية" data-what="تطبيق مثله لشغلك" defer></script>
+</body>
+</html>

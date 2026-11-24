@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, follow">
+<title>عطورات ليشو — دار عطور | Leesho Parfums</title>
+<meta name="description" content="عطورات ليشو — متجر عطور نموذجي بأنفٍ فضولي: ست تركيبات، حقيبة تسوّق، وإتمام طلب تجريبي. تصميم نموذجي من علي وليشو، العلامة والمنتجات خيالية.">
+<meta name="theme-color" content="#0F1726">
+
+<link rel="icon" href="assets/brand/icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/brand/icon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="عطورات ليشو">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="عطورات ليشو — متجر عطور نموذجي">
+<meta property="og:description" content="صفحة هبوط متحركة ومتجر تجريبي كامل لدار عطور خيالية. تصميم نموذجي من علي وليشو.">
+<meta property="og:url" content="https://allawi951.github.io/leesho/demos/perfume/">
+<meta property="og:image" content="https://allawi951.github.io/leesho/demos/perfume/assets/brand/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- ═══════════ الشريط العلوي ═══════════ -->
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a href="#top" class="nav__brand" data-magnetic aria-label="عطورات ليشو">
+      <span class="nav__mark" data-mark></span>
+      <span class="nav__name" data-i18n="brand.short"></span>
+    </a>
+
+    <nav class="nav__links">
+      <a class="nav__link" href="#notes" data-i18n="nav.notes"></a>
+      <a class="nav__link" href="#collection" data-i18n="nav.collection"></a>
+      <a class="nav__link" href="#story" data-i18n="nav.story"></a>
+      <a class="nav__link" href="#visit" data-i18n="nav.visit"></a>
+    </nav>
+
+    <div class="nav__tools">
+      <button class="lang-btn" id="langBtn" data-i18n="nav.lang" aria-label="Switch language"></button>
+      <button class="icon-btn" id="cartBtn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+        </svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+      <button class="icon-btn nav__burger" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ═══════════ الفصل ٠ — البطل ═══════════ -->
+<section class="hero" id="hero">
+  <div class="hero__bg"><img src="assets/img/hero-water.jpg" alt="" id="heroImg" fetchpriority="high"></div>
+  <div class="hero__veil"></div>
+  <canvas id="waterCanvas"></canvas>
+
+  <div class="hero__in">
+    <h1 class="sr-only">عطورات ليشو — Leesho Parfums</h1>
+    <p class="eyebrow" data-i18n="hero.eyebrow" id="heroEyebrow"></p>
+
+    <!-- الشعار: ليشو بخطّ قلمٍ واحد يشمّ قارورة. كل المسارات تُرسم بحركة stroke-dashoffset -->
+    <svg class="hero__mark" id="heroMark" viewBox="0 0 400 400" role="img" aria-label="شعار عطورات ليشو">
+      <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <!-- الإطار: حلقة مفتوحة من الأعلى لتخرج منها الأذنان، وقوس داخلي سفلي -->
+      <path class="ln-draw" d="M310 73 A172 172 0 1 1 90 73"/>
+      <path class="ln-draw" d="M342 287 A164 164 0 0 1 58 287"/>
+      <!-- الرأس والأذنان -->
+      <path class="ln-draw" d="M124 188 C96 204 82 234 86 266 C91 304 126 328 172 328 C218 328 252 306 258 270 C262 240 248 208 222 192"/>
+      <path class="ln-draw" d="M124 188 C106 138 92 78 100 42 C105 20 128 16 140 34 C156 64 154 136 146 180"/>
+      <path class="ln-draw" d="M198 182 C200 138 218 100 252 92 C286 84 316 106 328 140 C332 152 322 158 314 150 C300 130 280 120 264 126 C244 134 232 158 222 192"/>
+      <path class="ln-draw" d="M146 180 C162 172 182 173 198 182"/>
+      <path class="ln-draw" d="M127 168 C114 126 108 84 114 54 C122 44 130 48 134 60 C142 94 142 134 138 168"/>
+      <path class="ln-draw" d="M210 170 C214 136 232 112 258 106 C284 100 304 116 316 140 C298 126 278 120 260 128 C242 136 230 154 222 172"/>
+      <!-- العينان والحاجبان (الأيمن مرفوع: فضول) -->
+      <path class="ln-draw" d="M133 248 a13 17 0 1 0 26 0 a13 17 0 1 0 -26 0"/>
+      <path class="ln-draw" d="M189 244 a13 17 0 1 0 26 0 a13 17 0 1 0 -26 0"/>
+      <path class="ln-draw" d="M146 251 a6 6.5 0 1 0 12 0 a6 6.5 0 1 0 -12 0"/>
+      <path class="ln-draw" d="M202 247 a6 6.5 0 1 0 12 0 a6 6.5 0 1 0 -12 0"/>
+      <path class="ln-draw" d="M128 220 C138 214 152 213 162 217"/>
+      <path class="ln-draw" d="M186 206 C195 194 212 191 223 201"/>
+      <!-- الأنف والفم والشوارب -->
+      <path class="ln-draw" d="M175 275 C178 271 186 271 189 275 C187 281 183 283 182 283 C181 283 177 281 175 275 Z"/>
+      <path class="ln-draw" d="M182 283 C182 287 183 290 184 293"/>
+      <path class="ln-draw" d="M180 300 a4 5 0 1 0 8 0 a4 5 0 1 0 -8 0"/>
+      <path class="ln-draw" d="M202 284 C214 281 224 281 234 284"/>
+      <path class="ln-draw" d="M201 291 C212 293 221 297 228 303"/>
+      <path class="ln-draw" d="M162 284 C150 280 138 281 127 285"/>
+      <path class="ln-draw" d="M163 291 C152 293 142 298 135 304"/>
+      <!-- القارورة -->
+      <path class="ln-draw" d="M264 298 L264 260 L274 250 L304 250 L314 260 L314 298 L304 308 L274 308 Z"/>
+      <path class="ln-draw" d="M272 266 L280 258 L298 258 L306 266 L306 292 L298 300 L280 300 L272 292 Z"/>
+      <path class="ln-draw" d="M282 250 L282 242 L296 242 L296 250"/>
+      <path class="ln-draw" d="M278 242 L300 242"/>
+      <path class="ln-draw" d="M289 242 C277 232 275 218 289 202 C303 218 301 232 289 242 Z"/>
+      <path class="ln-draw" d="M289 208 L289 236"/>
+      <!-- أثر الرائحة يصل إلى الأنف، ولمعتان -->
+      <path class="ln-draw" d="M276 236 C264 232 262 252 248 252 C236 252 234 262 222 266 C214 268 206 270 198 272"/>
+      <path class="ln-draw" d="M280 222 C272 212 266 218 258 212"/>
+      <path class="ln-draw" d="M318 190 L318 202 M312 196 L324 196"/>
+      <path class="ln-draw" d="M252 186 L252 194 M248 190 L256 190"/>
+      </g>
+    </svg>
+
+    <p class="hero__word" id="heroWord" aria-hidden="true"></p>
+    <p class="hero__sub" data-i18n="hero.sub" id="heroSub"></p>
+    <p class="hero__line" data-i18n="hero.line" id="heroLine"></p>
+  </div>
+
+  <div class="hero__cue" id="heroCue">
+    <i></i><span data-i18n="hero.scroll"></span>
+  </div>
+</section>
+
+<!-- ═══════════ الفصل ١ — هرم الرائحة ═══════════ -->
+<section class="notes" id="notes">
+  <div class="notes__pin" id="notesPin">
+    <div class="notes__grid">
+      <div class="notes__head">
+        <p class="eyebrow" data-i18n="notes.eyebrow"></p>
+        <h2 class="display" style="font-size:clamp(1.9rem,3.6vw,3rem);margin-block:.7rem 0" data-i18n="notes.title"></h2>
+      </div>
+
+      <div class="notes__media">
+        <div class="notes__frame">
+        <div class="notes__ring"></div>
+        <div class="notes__img" data-note="0"><img src="assets/img/note-top.jpg" alt=""></div>
+        <div class="notes__img" data-note="1"><img src="assets/img/note-heart.jpg" alt=""></div>
+        <div class="notes__img" data-note="2"><img src="assets/img/note-base.jpg" alt=""></div>
+        </div>
+      </div>
+
+      <div class="notes__body">
+        <div class="notes__steps">
+          <article class="notes__step" data-step="0">
+            <h3><span data-i18n="notes.top.t"></span> <b data-i18n="notes.top.k"></b></h3>
+            <p data-i18n="notes.top.d"></p>
+          </article>
+          <article class="notes__step" data-step="1">
+            <h3><span data-i18n="notes.heart.t"></span> <b data-i18n="notes.heart.k"></b></h3>
+            <p data-i18n="notes.heart.d"></p>
+          </article>
+          <article class="notes__step" data-step="2">
+            <h3><span data-i18n="notes.base.t"></span> <b data-i18n="notes.base.k"></b></h3>
+            <p data-i18n="notes.base.d"></p>
+          </article>
+        </div>
+
+        <div class="notes__bar"><i id="notesBar"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ الفصل ٢ — المجموعة ═══════════ -->
+<section class="coll" id="collection">
+  <div class="coll__head">
+    <p class="eyebrow" data-i18n="coll.eyebrow"></p>
+    <h2 class="display" data-i18n="coll.title"></h2>
+    <p class="coll__hint" data-i18n="coll.hint"></p>
+  </div>
+  <div class="coll__pin" id="collPin">
+    <div class="coll__track" id="collTrack"></div>
+  </div>
+</section>
+
+<!-- ═══════════ الفصل ٣ — الحكاية ═══════════ -->
+<section class="story" id="story">
+  <div class="story__row">
+    <div class="story__media"><img src="assets/img/story-hands.jpg" alt="" data-parallax></div>
+    <div class="story__text">
+      <p class="story__num">01</p>
+      <h3 data-i18n="story.t1"></h3>
+      <p data-i18n="story.d1"></p>
+    </div>
+  </div>
+  <div class="story__row">
+    <div class="story__media"><img src="assets/img/story-atelier.jpg" alt="" data-parallax></div>
+    <div class="story__text">
+      <p class="story__num">02</p>
+      <h3 data-i18n="story.t2"></h3>
+      <p data-i18n="story.d2"></p>
+    </div>
+  </div>
+  <div class="story__row">
+    <div class="story__media"><img src="assets/img/story-marble.jpg" alt="" data-parallax></div>
+    <div class="story__text">
+      <p class="story__num">03</p>
+      <h3 data-i18n="story.t3"></h3>
+      <p data-i18n="story.d3"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ الفصل ٤ — جرّبه ═══════════ -->
+<section class="visit" id="visit">
+  <div class="visit__bg"><img src="assets/img/mood-silk.jpg" alt="" data-parallax></div>
+  <div class="visit__in">
+    <p class="eyebrow" data-i18n="visit.eyebrow"></p>
+    <h2 class="display" data-i18n="visit.title"></h2>
+    <p class="lede" data-i18n="visit.desc"></p>
+    <p class="visit__hours" data-i18n="visit.hours"></p>
+    <div class="visit__cta">
+      <a href="#collection" class="btn btn--solid" data-magnetic data-i18n="visit.cta"></a>
+      <button class="btn" data-magnetic data-demo data-i18n="visit.contact"></button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════ الذيل ═══════════ -->
+<footer class="foot">
+  <div class="foot__in">
+    <span class="foot__mark" data-mark></span>
+    <p class="foot__meta">© <span id="year"></span> <span data-i18n="brand.full"></span> · <span data-i18n="foot.rights"></span></p>
+    <p class="foot__sample" lang="ar" dir="rtl">تصميم نموذجي من علي وليشو — العلامة والمنتجات خيالية</p>
+    <p class="foot__sample-en" data-i18n="foot.sampleEn"></p>
+    <p class="foot__demo">◆ <span data-i18n="foot.demo"></span></p>
+  </div>
+</footer>
+
+<!-- ═══════════ قائمة الجوال ═══════════ -->
+<nav class="mmenu" id="mobileMenu" aria-hidden="true">
+  <button class="icon-btn mmenu__x" data-close aria-label="Close">
+    <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <ul class="mmenu__list">
+    <li><a href="#notes"      data-close data-i18n="nav.notes"></a></li>
+    <li><a href="#collection" data-close data-i18n="nav.collection"></a></li>
+    <li><a href="#story"      data-close data-i18n="nav.story"></a></li>
+    <li><a href="#visit"      data-close data-i18n="nav.visit"></a></li>
+  </ul>
+  <span class="mmenu__mark" data-mark></span>
+</nav>
+
+<!-- ═══════════ درج الحقيبة ═══════════ -->
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer__head">
+    <h2 data-i18n="cart.title"></h2>
+    <button class="icon-btn" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="drawer__body" id="cartBody"></div>
+  <div class="drawer__foot" id="cartFoot" hidden>
+    <div class="line"><span data-i18n="cart.subtotal"></span><span id="cartSub"></span></div>
+    <button class="btn btn--solid btn--block" id="checkoutBtn" data-i18n="cart.checkout"></button>
+  </div>
+</aside>
+
+<!-- ═══════════ نافذة إتمام الطلب (تجريبية) ═══════════ -->
+<div class="modal" id="coModal">
+  <div class="modal__box">
+    <button class="icon-btn modal__x" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="steps" id="coSteps">
+      <i><span data-i18n="co.s1"></span></i><i><span data-i18n="co.s2"></span></i>
+      <i><span data-i18n="co.s3"></span></i><i><span data-i18n="co.s4"></span></i>
+    </div>
+    <div class="co" id="coBody"></div>
+  </div>
+</div>
+
+<!-- ═══════════ نافذة تفاصيل المنتج ═══════════ -->
+<div class="modal" id="pdModal">
+  <div class="modal__box">
+    <button class="icon-btn modal__x" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="pd" id="pdBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/motion.js"></script>
+<script src="assets/js/cursor.js"></script>
+<script src="../../assets/demo-bar.js" data-service="إنشاء موقع" data-back="../../websites/" data-demo="متجر عطورات ليشو" data-what="متجر مثله لعلامتك" defer></script>
+</body>
+</html>

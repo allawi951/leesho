@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>سوالف الطاولة — لعبة بطاقات للطاولة | علي وليشو</title>
+<meta name="description" content="سوالف الطاولة: جوال واحد وبطاقات أسئلة وتحديات خفيفة تجمع اللمّة وتخلي الكل يسولف بدل الجوالات. لعبة نموذج لمطاعم من علي وليشو.">
+<meta name="theme-color" content="#1d1f24">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- الإعداد -->
+  <section id="s-setup" class="screen active">
+    <div class="brand"><span class="logo">🍽️</span><span>مطعم ليشو <small>(نموذج)</small></span></div>
+    <h1>سوالف الطاولة</h1>
+    <p class="sub">جوال واحد، وطاولة وحدة، وسوالف للكل 🗣️<br><small>حطّوا جوالاتكم جنب وخلّوا هذا يمرّ بينكم</small></p>
+
+    <h3>مين معنا؟ <small>(اختياري)</small></h3>
+    <form id="nameform" class="nameform">
+      <input id="nameinp" maxlength="14" placeholder="اكتب اسم وأضف" autocomplete="off">
+      <button class="btn mini" type="submit">+ أضف</button>
+    </form>
+    <div id="names" class="chips"></div>
+
+    <h3>اختاروا أنواع البطاقات</h3>
+    <div id="cats" class="cats"></div>
+
+    <button id="b-start" class="btn go big">يلا نبدأ 🎴</button>
+  </section>
+
+  <!-- اللعب -->
+  <section id="s-play" class="screen">
+    <div class="top">
+      <button id="b-menu" class="ibtn" aria-label="قائمة">☰</button>
+      <div id="turn" class="turn"></div>
+      <button id="b-mute" class="ibtn" aria-label="الصوت">🔊</button>
+    </div>
+    <div id="left" class="left"></div>
+    <div id="stage" class="stage">
+      <div id="card" class="card">
+        <div class="face back">
+          <div class="pattern"></div>
+          <div class="backbrand"><span class="logo">🍽️</span><b>مطعم ليشو</b><small>نموذج</small></div>
+          <div class="tap">اضغط أو اسحب لسحب بطاقة</div>
+        </div>
+        <div class="face front" id="front">
+          <div class="cat" id="c-cat"></div>
+          <div class="txt" id="c-txt"></div>
+          <div class="cfoot"><span id="c-ico"></span></div>
+        </div>
+      </div>
+      <div id="banner" class="banner"></div>
+    </div>
+    <div class="acts">
+      <button id="b-skip" class="btn ghost" disabled>تخطي ⏭</button>
+      <button id="b-main" class="btn go">اسحب بطاقة 🎴</button>
+    </div>
+    <p id="hint" class="hint"></p>
+  </section>
+
+  <!-- قائمة / نهاية -->
+  <section id="s-menu" class="screen overlay">
+    <div class="panel">
+      <div class="brand"><span class="logo">🍽️</span><span>مطعم ليشو <small>(نموذج)</small></span></div>
+      <h2 id="m-title">استراحة سوالف ☕</h2>
+      <p id="m-stats" class="stats"></p>
+      <div class="offer">🎁 نموذج: مطعمك يقدر يعطي حلى مجاني للطاولة اللي تكمل ٢٠ بطاقة<br><small>(مكان عرض مطعمك أو كود خصم)</small></div>
+      <button id="b-resume" class="btn go">كمّل السوالف</button>
+      <button id="b-restart" class="btn ghost">ابدأ من جديد</button>
+      <button id="b-setup" class="btn ghost">غيّر الأسماء والأنواع</button>
+    </div>
+  </section>
+</div>
+
+<script src="cards.js"></script>
+<script src="game.js"></script>
+<script src="../../assets/demo-bar.js" data-service="لعبة" data-back="../" data-demo="سوالف الطاولة" data-what="لعبة مثلها لمطعمك" defer></script>
+</body>
+</html>

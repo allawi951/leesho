@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ركّب الطلب — لعبة نموذج لمطعمك | علي وليشو</title>
+<meta name="description" content="ركّب الطلب: زبائن جوعانين وصبرهم قليل! جهّز الطلبات بالترتيب الصح قبل ما يزعلون. لعبة نموذج لمطاعم من علي وليشو.">
+<meta name="theme-color" content="#1d1f24">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- شاشة البداية -->
+  <section id="s-start" class="screen active">
+    <div class="brand"><span class="logo">🍽️</span><span>مطعم ليشو <small>(نموذج)</small></span></div>
+    <h1>ركّب الطلب</h1>
+    <p class="sub">الزبون يطلب، وانت تركّب بالترتيب الصح قبل لا يزعل!</p>
+    <h2>اختر قائمتك</h2>
+    <div id="themes" class="themes"></div>
+    <p class="best">أعلى نتيجة: <b id="best-start">0</b></p>
+    <p class="how">اضغط المكوّنات بنفس ترتيب الورقة، وبعدها «قدّم». الغلط يرجّعك من جديد.</p>
+  </section>
+
+  <!-- شاشة اللعب -->
+  <section id="s-game" class="screen">
+    <div class="hud">
+      <button id="b-pause" class="ibtn" aria-label="إيقاف مؤقت">⏸</button>
+      <div class="stat"><span>النقاط</span><b id="h-score">0</b></div>
+      <div class="stat"><span>كومبو</span><b id="h-combo">x0</b></div>
+      <div class="stat"><span>💰 بقشيش</span><b id="h-tips">0</b></div>
+      <button id="b-mute" class="ibtn" aria-label="الصوت">🔊</button>
+    </div>
+    <div class="timebar"><i id="timefill"></i><b id="timetxt">75</b></div>
+    <div id="custs" class="custs"></div>
+    <div class="build">
+      <div id="slots" class="slots"></div>
+      <div id="toast" class="toast"></div>
+    </div>
+    <div id="ings" class="ings"></div>
+    <div class="acts">
+      <button id="b-clear" class="btn ghost">🗑️ من جديد</button>
+      <button id="b-serve" class="btn go">✅ قدّم</button>
+    </div>
+    <div id="fx" class="fx"></div>
+  </section>
+
+  <!-- إيقاف مؤقت -->
+  <section id="s-pause" class="screen overlay">
+    <div class="panel">
+      <h2>استراحة ☕</h2>
+      <button id="b-resume" class="btn go">كمّل</button>
+      <button id="b-quit" class="btn ghost">اترك الجولة</button>
+    </div>
+  </section>
+
+  <!-- النهاية -->
+  <section id="s-end" class="screen overlay">
+    <div class="panel">
+      <div class="brand"><span class="logo">🍽️</span><span>مطعم ليشو <small>(نموذج)</small></span></div>
+      <h2 id="e-title">خلص الوقت!</h2>
+      <div class="bigscore"><span id="e-score">0</span><small>نقطة</small></div>
+      <p id="e-new" class="newbest" hidden>🏆 رقم قياسي جديد!</p>
+      <p class="best">أعلى نتيجة: <b id="e-best">0</b></p>
+      <div class="sumrow"><span>🍔 قدّمت <b id="e-served">0</b></span><span>💰 بقشيش <b id="e-tips">0</b></span><span>😤 مشوا <b id="e-lost">0</b></span></div>
+      <div class="offer">🎁 نموذج: مطعمك يقدر يعطي خصم للي يجيب أعلى نتيجة<br><small>(كود الخصم يطلع هنا للفائز)</small></div>
+      <button id="b-again" class="btn go">العب مرة ثانية</button>
+      <button id="b-menu" class="btn ghost">غيّر القائمة</button>
+    </div>
+  </section>
+</div>
+
+<script src="game.js"></script>
+<script src="../../assets/demo-bar.js" data-service="لعبة" data-back="../" data-demo="ركّب الطلب" data-what="لعبة مثلها لمطعمك" defer></script>
+</body>
+</html>

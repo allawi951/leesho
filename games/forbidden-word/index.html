@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الكلمة الممنوعة — لعبة فرق للطاولة | علي وليشو</title>
+<meta name="description" content="الكلمة الممنوعة: فريقين وجوال واحد. اشرح الكلمة لفريقك بدون ما تقول الكلمات الممنوعة، والوقت يمشي! لعبة نموذج لمطاعم من علي وليشو.">
+<meta name="theme-color" content="#1d1f24">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- الإعداد -->
+  <section id="s-setup" class="screen active">
+    <div class="brand"><span class="logo">🍽️</span><span>مطعم ليشو <small>(نموذج)</small></span></div>
+    <h1>الكلمة الممنوعة 🚫</h1>
+    <p class="sub">اشرح الكلمة لفريقك… بدون ما تقول الممنوعات!</p>
+
+    <h3>الفريقين</h3>
+    <div class="teams">
+      <input id="t1" maxlength="12" value="الصقور" aria-label="اسم الفريق الأول">
+      <b>ضد</b>
+      <input id="t2" maxlength="12" value="النمور" aria-label="اسم الفريق الثاني">
+    </div>
+
+    <h3>وقت الدور</h3>
+    <div id="o-time" class="seg"></div>
+    <h3>عدد الأدوار لكل فريق</h3>
+    <div id="o-rounds" class="seg"></div>
+    <h3>أنواع البطاقات</h3>
+    <div id="o-themes" class="seg wrap"></div>
+    <button id="b-start" class="btn go big">يلا نبدأ!</button>
+  </section>
+
+  <!-- تسليم الدور -->
+  <section id="s-hand" class="screen">
+    <div class="top"><span id="h-round" class="pill"></span><button id="b-mute" class="ibtn" aria-label="الصوت">🔊</button></div>
+    <div class="hand">
+      <p class="mut">الدور على فريق</p>
+      <h2 id="h-team">الصقور</h2>
+      <div class="how">📱 واحد منكم يمسك الجوال ويشرح<br>والباقي يخمنون — والخصم يراقب!</div>
+      <div class="scoreboard" id="h-board"></div>
+    </div>
+    <button id="b-ready" class="btn go big">جاهزين — ابدأ</button>
+  </section>
+
+  <!-- اللعب -->
+  <section id="s-play" class="screen">
+    <div class="top">
+      <button id="b-pause" class="ibtn" aria-label="إيقاف">⏸</button>
+      <div class="pill" id="p-team"></div>
+      <div class="timer" id="p-timer"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" class="trk"/><circle cx="20" cy="20" r="17" class="ring" id="p-ring"/></svg><b id="p-sec">60</b></div>
+    </div>
+    <div class="turnscore">نقاط الدور: <b id="p-score">0</b></div>
+    <div id="cardwrap" class="cardwrap">
+      <div id="card" class="wcard">
+        <div class="theme" id="c-theme"></div>
+        <div class="word" id="c-word"></div>
+        <div class="forb-t">ممنوع تقول:</div>
+        <ul id="c-forb" class="forb"></ul>
+      </div>
+    </div>
+    <div class="acts">
+      <button id="b-bad" class="btn bad">🚫 ممنوع</button>
+      <button id="b-skip" class="btn ghost">تخطي <small id="skipn">3</small></button>
+      <button id="b-ok" class="btn go">✅ صح</button>
+    </div>
+    <div id="count" class="count"></div>
+  </section>
+
+  <!-- ملخص الدور -->
+  <section id="s-sum" class="screen">
+    <h2>خلص الوقت! ⏰</h2>
+    <div class="bigscore"><span id="u-score">0</span><small id="u-team"></small></div>
+    <ul id="u-list" class="sumlist"></ul>
+    <div class="scoreboard" id="u-board"></div>
+    <button id="b-next" class="btn go big">التالي</button>
+  </section>
+
+  <!-- إيقاف -->
+  <section id="s-pause" class="screen overlay">
+    <div class="panel">
+      <h2>استراحة ☕</h2>
+      <button id="b-resume" class="btn go">كمّل</button>
+      <button id="b-quit" class="btn ghost">إنهاء اللعبة</button>
+    </div>
+  </section>
+
+  <!-- الفائز -->
+  <section id="s-win" class="screen overlay">
+    <div id="confetti" class="confetti"></div>
+    <div class="panel">
+      <div class="brand"><span class="logo">🍽️</span><span>مطعم ليشو <small>(نموذج)</small></span></div>
+      <div class="trophy">🏆</div>
+      <h2 id="w-title">الصقور فازوا!</h2>
+      <div class="scoreboard" id="w-board"></div>
+      <div class="offer">🎁 نموذج: مطعمك يقدر يعطي الفريق الفايز مشروب أو حلى مجاني<br><small>(مكان عرض مطعمك أو كود خصم)</small></div>
+      <button id="b-again" class="btn go">العب مرة ثانية</button>
+      <button id="b-home" class="btn ghost">غيّر الإعدادات</button>
+    </div>
+  </section>
+</div>
+
+<script src="cards.js"></script>
+<script src="game.js"></script>
+<script src="../../assets/demo-bar.js" data-service="لعبة" data-back="../" data-demo="الكلمة الممنوعة" data-what="لعبة مثلها لمطعمك" defer></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>منيو رقمي بالـQR مع سلة طلبات — نموذج تطبيق من علي وليشو</title>
+<meta name="description" content="نموذج منيو رقمي لمطعم: يمسح الزبون الـQR من طاولته، يختار أصنافه ويضيف ملاحظاته، ويوصل الطلب مرتب لواتساب المطعم. نسوي لك واحد بأصنافك وهويتك.">
+<meta name="theme-color" content="#2a1c14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23d4572c'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle'%3E🍽%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-in">
+    <div class="logo" aria-hidden="true">
+      <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#f6e7cf"/><path d="M14 36h36a18 18 0 0 1-36 0Z" fill="#d4572c"/><path d="M12 36h40" stroke="#2a1c14" stroke-width="3" stroke-linecap="round"/><path d="M26 26c-2-3 2-5 0-8M32 25c-2-3 2-5 0-8M38 26c-2-3 2-5 0-8" stroke="#2a1c14" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <h1>سُفرة الحارة</h1>
+    <p class="tag">أكل بيت سعودي… على أصوله</p>
+    <ul class="meta">
+      <li><span class="dot" aria-hidden="true"></span>مفتوح الحين · يقفل ١٢ ص</li>
+      <li>⭐ ٤٫٨ <span class="muted">(٢٣٠ تقييم)</span></li>
+    </ul>
+  </div>
+</header>
+
+<main class="page">
+  <aside class="sample" role="note">
+    <b>منيو تجريبي لمطعم وهمي.</b> امسح، اطلب، وشوف كيف يوصل الطلب للمطعم — بدون ما ينرسل شي فعلًا.
+  </aside>
+
+  <section class="mode" aria-label="طريقة الطلب">
+    <div class="seg" role="radiogroup" aria-label="طريقة الطلب" id="modeSeg">
+      <button type="button" role="radio" data-mode="table" aria-checked="true"><span aria-hidden="true">🪑</span> في المطعم</button>
+      <button type="button" role="radio" data-mode="pickup" aria-checked="false"><span aria-hidden="true">🛍️</span> استلام</button>
+    </div>
+    <p class="mode-note" id="modeNote"></p>
+  </section>
+
+  <div class="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="q" placeholder="دوّر على صنف… كبسة، شاورما، كنافة" aria-label="بحث في المنيو" autocomplete="off">
+  </div>
+
+  <nav class="tabs" id="tabs" aria-label="أقسام المنيو"></nav>
+
+  <div id="menu" class="menu"></div>
+  <p class="empty" id="empty" hidden>ما لقينا شي بهالاسم 🤔 جرّب كلمة ثانية</p>
+
+  <footer class="foot">
+    <p>الأسعار بالريال وشاملة الضريبة · الصور توضيحية</p>
+    <button type="button" class="link" id="resetBtn">إعادة ضبط النموذج</button>
+  </footer>
+</main>
+
+<!-- شريط السلة -->
+<button type="button" class="cartbar" id="cartBar" hidden aria-label="عرض السلة">
+  <span class="cb-count" id="cbCount">0</span>
+  <span class="cb-txt">عرض السلة</span>
+  <span class="cb-total" id="cbTotal"></span>
+</button>
+
+<!-- تفاصيل الصنف -->
+<div class="ov" id="itemOv" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="itTitle">
+    <button type="button" class="x" data-close aria-label="إغلاق">✕</button>
+    <div class="it-art" id="itArt" aria-hidden="true"></div>
+    <div class="it-body">
+      <h2 id="itTitle"></h2>
+      <p class="it-desc" id="itDesc"></p>
+      <div id="itOpts"></div>
+      <label class="fld">
+        <span>ملاحظة على الصنف <em>(اختياري)</em></span>
+        <input type="text" id="itNote" maxlength="80" placeholder="مثال: بدون بصل، الرز زيادة" autocomplete="off">
+      </label>
+    </div>
+    <div class="sheet-foot">
+      <div class="stepper" role="group" aria-label="الكمية">
+        <button type="button" id="itMinus" aria-label="أنقص الكمية">−</button>
+        <output id="itQty" aria-live="polite">1</output>
+        <button type="button" id="itPlus" aria-label="زد الكمية">+</button>
+      </div>
+      <button type="button" class="btn btn-main" id="itAdd">أضف للسلة · <span id="itPrice"></span></button>
+    </div>
+  </div>
+</div>
+
+<!-- السلة -->
+<div class="ov" id="cartOv" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <header class="sheet-h">
+      <h2 id="cartTitle">سلتك</h2>
+      <button type="button" class="x x-inline" data-close aria-label="إغلاق">✕</button>
+    </header>
+    <ul class="lines" id="lines"></ul>
+    <div class="cart-form">
+      <div class="seg seg-sm" role="radiogroup" aria-label="طريقة الطلب" id="modeSeg2">
+        <button type="button" role="radio" data-mode="table" aria-checked="true">🪑 في المطعم</button>
+        <button type="button" role="radio" data-mode="pickup" aria-checked="false">🛍️ استلام</button>
+      </div>
+      <div id="tableFields">
+        <label class="fld">
+          <span>رقم الطاولة</span>
+          <select id="tableNo"></select>
+        </label>
+      </div>
+      <div id="pickupFields" hidden>
+        <label class="fld">
+          <span>الاسم</span>
+          <input type="text" id="pName" maxlength="30" autocomplete="off" placeholder="عشان ننادي عليك" aria-describedby="pNameErr">
+          <small class="err" id="pNameErr"></small>
+        </label>
+        <div class="fld">
+          <span id="pTimeLbl">وقت الاستلام</span>
+          <div class="chips" role="radiogroup" aria-labelledby="pTimeLbl" id="pTime">
+            <button type="button" role="radio" data-t="0" aria-checked="true">أسرع وقت</button>
+            <button type="button" role="radio" data-t="20" aria-checked="false">بعد ٢٠ د</button>
+            <button type="button" role="radio" data-t="45" aria-checked="false">بعد ٤٥ د</button>
+          </div>
+        </div>
+      </div>
+      <label class="fld">
+        <span>ملاحظة للمطبخ <em>(اختياري)</em></span>
+        <input type="text" id="gNote" maxlength="100" placeholder="مثال: الطلب لشخصين، جيبوا ملاعق زيادة" autocomplete="off">
+      </label>
+    </div>
+    <dl class="sum" id="sum"></dl>
+    <div class="sheet-foot">
+      <button type="button" class="btn btn-main btn-wide" id="sendBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 20 4l-6 16-2.5-6.5L4 12Z"/></svg>
+        أرسل الطلب
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- معاينة رسالة واتساب -->
+<div class="ov" id="waOv" hidden>
+  <div class="sheet wa-sheet" role="dialog" aria-modal="true" aria-labelledby="waTitle">
+    <header class="sheet-h">
+      <div>
+        <h2 id="waTitle">هكذا يوصل الطلب لواتساب المطعم</h2>
+        <p class="muted">نموذج فقط — ما انرسل شي لأحد.</p>
+      </div>
+      <button type="button" class="x x-inline" data-close aria-label="إغلاق">✕</button>
+    </header>
+    <div class="phone">
+      <div class="wa-top">
+        <span class="wa-av" aria-hidden="true">🍽️</span>
+        <div><b>سُفرة الحارة — الطلبات</b><small>جوال الكاشير</small></div>
+      </div>
+      <div class="wa-chat">
+        <span class="wa-day">اليوم</span>
+        <div class="bubble" id="waMsg"></div>
+      </div>
+    </div>
+    <div class="sheet-foot two">
+      <button type="button" class="btn btn-soft" id="copyBtn">نسخ نص الرسالة</button>
+      <button type="button" class="btn btn-main" id="newOrder">طلب جديد</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="app.js"></script>
+<script src="../../assets/demo-bar.js" data-service="برنامج أو تطبيق" data-back="../" data-demo="منيو رقمي بسلة طلبات" data-what="تطبيق مثله لشغلك" defer></script>
+</body>
+</html>
